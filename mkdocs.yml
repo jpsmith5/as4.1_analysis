@@ -1,0 +1,71 @@
+theme: databio
+
+site_name: Renin Regulatory Pathway Inhibition Epigenetically Silences *Ren1*
+site_author: Jason Smith
+site_url: https://as4.1-analysis.readthedocs.io/en/latest/
+repo_url: https://github.com/jpsmith5/as4.1_analysis
+
+markdown_extensions:
+  - pymdownx.details  # pip install --user pymdown-extensions
+
+nav:
+  - Introduction: 
+    - About: 'README.md'
+  - ATAC-seq Data Analysis:
+    - H89 Analysis:
+      - 1. Normalize and generate BAMs: 'ATACseq-H89_1.NormalizeGenerateBAMfiles.md'
+      - 2. Initial R analysis: 'ATACseq-H89_2.InitialRAnalysis.md'
+      - 3. Define motif families: 'ATACseq-H89_3.DefineMotifFamilies.md'
+      - 4. Refine motif families: 'ATACseq-H89_4.RefineMotifFamilies.md'
+      - 5. Define and annotate final ATAC data: 'ATACseq-H89_5.DefineAnnotateFinalATACdataframe.md'
+      - 6. Plot motif profiles: 'ATACseq-H89_6.PlotMotifProfiles.md'
+    - JQ1 Analysis:
+      - 1. Normalize and generate BAMs: 'ATACseq-JQ1_1.NormalizeGenerateBAMfiles.md'
+      - 2. Initial R analysis: 'ATACseq-JQ1_2.InitialRAnalysis.md'
+      - 3. Define motif families: 'ATACseq-JQ1_3.DefineMotifFamilies.md'
+      - 5. Define and annotate final ATAC data: 'ATACseq-JQ1_4.DefineAnnotateFinalATACdataframe.md'
+      - 6. Plot motif profiles: 'ATACseq-JQ1_5.PlotMotifProfiles.md'
+    - A-485 Analysis:
+      - 1. Normalize and generate BAMs: 'ATACseq-A485_1.NormalizeGenerateBAMfiles.md'
+      - 2. Initial R analysis: 'ATACseq-A485_2.InitialRAnalysis.md'
+      - 3. Define motif families: 'ATACseq-A485_3.DefineMotifFamilies.md'
+      - 5. Define and annotate final ATAC data: 'ATACseq-A485_4.DefineAnnotateFinalATACdataframe.md'
+      - 6. Plot motif profiles: 'ATACseq-A485_5.PlotMotifProfiles.md'
+  - scRNA-seq Data Analysis:
+    - 1. Initialize analysis: 'scRNAseq_1.initiation.md'
+    - 2. Quality control: 'scRNAseq_2.QC.md'
+    - 3. Perform dimensionality reduction: 'scRNAseq_3.DimensionalityReduction.md'
+    - 4. Annotate identified cell populations: 'scRNAseq_4.AnnotateClusters.md'
+    - 5. Perform Gene Set Enrichment Analysis: 'scRNAseq_5.PerformGSEA.md'
+    - 6. Perform velocity analysis: 'scRNAseq_6.VelocityAnalysis.md'
+    - 7. Perform Expression Variation Analysis: 'scRNAseq_7.ExpressionVariationAnalysis.md'
+    - 8. Generate expression plots: 'scRNAseq_8.GenerateExpressionFigures.md'
+    - 9. Prepare data for visualization: 'scRNAseq_9.GenomeBrowser.md'
+  - ChIP-seq/CUT&Tag/CUT&RUN Data Analysis:
+    - 1. Initialize and preprocess: 'ChIPseq_1-2.Preprocessing.md'
+    - 2. Setup R analysis: 'ChIPseq_3.InitialRSetup.md'
+    - 3. Create initial DBA object: 'ChIPseq_4.InitialDBA.md'
+    - 4. Annotate features: 'ChIPseq_5.Rannotations.md'
+    - 6. Generate heatmaps: 'ChIPseq_6.Rheatmaps.md'
+    - 5. Perform initial ontology comparisons: 'ChIPseq_7.GOv1.md'
+    - 7. Further annotate features: 'ChIPseq_8.R_moreannotations.md'
+    - 8. Subset on open chromatin regions: 'ChIPseq_9.subsetOnATAC.md'
+    - 9. Perform ontologies on subset regions: 'ChIPseq_10.GOonSubset.md'
+    - 10. Perform additional ontology comparisons: 'ChIPseq_11.GOv2.md'
+    - 11. Prepare data for visualization: 'ChIPseq_12.GenerateBEDfiles.md'
+    - 12. Initial lysine modification analysis: 'LysineModifications_1.md'
+    - 13. Continued lysine modification analysis: 'LysineModifications_2.md'
+  - Integrated Analyses:
+    - 1. Compare JQ1 results: 'IntegratedAnalysis_1.JQ1.md'
+    - 2. Compare A485 results: 'IntegratedAnalysis_2.A485.md'
+    - 3. Compare H89 results: 'IntegratedAnalysis_3.H89.md'
+    - 4. Overall comparisons: 'IntegratedAnalysis_4.Comparisons.md'
+
+plugins:
+  - search
+
+navbar:
+  right:
+  - text: Software & Data
+    icon: fa-code fa-lg
+    href: https://github.com/jpsmith5/
