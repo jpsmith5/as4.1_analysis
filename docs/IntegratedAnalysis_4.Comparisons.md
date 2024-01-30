@@ -44,7 +44,7 @@ bedtools jaccard -a $PROCESSED/A485/bam_files/As4.1_A485_summit_window_pval_smal
 intersection    union   jaccard n_intersections
 10663421        23864825        0.446826        63716
 
-## 4b. Compare just the dynamic peaks between each set.
+## 4b. Compare dynamic peaks between treatments.
 
 ```console
 cd $PROCESSED/ 
@@ -66,7 +66,7 @@ bedtools jaccard -a JQ1_dynamic_peaks_sorted.bed -b A485_dynamic_peaks_sorted.be
 # jaccard: 0.0815062
 ```
 
-## 4c. Also compare the specific dynamic cluster BED files.
+## 4c. Also compare the individual dynamic cluster files.
 
 ```console
 export A485_DIR=$PROCESSED/A485/bam_files/FIMO/tomtom/fimo_composites/
@@ -123,21 +123,12 @@ bedtools jaccard -a ${JQ1_DIR}/Klf1_fimo_all.bed -b ${A485_DIR}/Klf4_fimo_all.be
 # 23609555        30399931        0.776632        121400
 ```
 
-
-
-
-
-
-
-
 ### 17c. Recalculate bigwigs using the BAM files
  - mm10 effective genome size: 2,730,871,774
-
-
  - Look at the genes most affected by H89 treatment in the genome browser
  - Look at the regions most affected by JQ1 and A485 treatment in the genome browser
 
-## 18. Compare A485 scRNA-seq overlapped regions to H89/JQ1
+## 4d. Compare A485 scRNA-seq overlapped regions to H89/JQ1
 
 ```console
 cd $PROCESSED/integration/
@@ -180,19 +171,13 @@ wc -l ${A485_DIR}/A485_increased-accessibilty-regions_linked_scRNAseq.bed
 # 1839
 
 bedtools jaccard -a ${H89_DIR}/H89up_P300-H3K27Ac_incATAC_Ren1-LO_olp.bed -b ${A485_DIR}/A485_increased-accessibilty-regions_linked_scRNAseq.bed
-intersection    union   jaccard n_intersections
-1010    1069937 0.000943981     5
 
 bedtools jaccard -a ${H89_DIR}/H89up_P300-H3K27Ac_incATAC_Ren1-LO_olp.bed -b ${JQ1_DIR}/JQ1_increased-accessibilty-regions_linked_scRNAseq.bed
-intersection    union   jaccard n_intersections
-202     983870  0.000205312     1
 
 bedtools jaccard -a ${A485_DIR}/A485_increased-accessibilty-regions_linked_scRNAseq.bed -b ${JQ1_DIR}/JQ1_increased-accessibilty-regions_linked_scRNAseq.bed
-intersection    union   jaccard n_intersections
-30320   650167  0.0466342       159
 ```
 
-## 19. Compare TF BED files
+## 4e. Compare TF BED files
 
 ```console
 export H89_DIR=$PROCESSED/H89/bam_files/FIMO/tomtom/fimo_composites/main_figure_beds/
@@ -200,72 +185,69 @@ export JQ1_DIR=$PROCESSED/jq1/bam_files/FIMO/tomtom/fimo_composites/main_figure_
 export A485_DIR=$PROCESSED/A485/bam_files/FIMO/tomtom/fimo_composites/main_figure_beds/
 ```
 
-### 19a. SP
+### SP
 
 ```console
 bedtools jaccard -a ${H89_DIR}/Sp9_fimo_all.bed -b ${JQ1_DIR}/Sp9_fimo_all.bed > SP_jaccard.txt
-bedtools jaccard -a ${H89_DIR}/Sp9_fimo_all.bed -b ${A485_DIR}/Sp2_fimo_all_2023-10-11.bed >> SP_jaccard.txt
-bedtools jaccard -a ${JQ1_DIR}/Sp9_fimo_all.bed -b ${A485_DIR}/Sp2_fimo_all_2023-10-11.bed >> SP_jaccard.txt
+bedtools jaccard -a ${H89_DIR}/Sp9_fimo_all.bed -b ${A485_DIR}/Sp2_fimo_all.bed >> SP_jaccard.txt
+bedtools jaccard -a ${JQ1_DIR}/Sp9_fimo_all.bed -b ${A485_DIR}/Sp2_fimo_all.bed >> SP_jaccard.txt
 
 bedtools jaccard -a ${H89_DIR}/Sp9_2M.bed -b ${JQ1_DIR}/Sp9_2M.bed > SP_2M_jaccard.txt
-bedtools jaccard -a ${H89_DIR}/Sp9_2M.bed -b ${A485_DIR}/Sp2_2M_2023-10-11.bed >> SP_2M_jaccard.txt
-bedtools jaccard -a ${JQ1_DIR}/Sp9_2M.bed -b ${A485_DIR}/Sp2_2M_2023-10-11.bed >> SP_2M_jaccard.txt
+bedtools jaccard -a ${H89_DIR}/Sp9_2M.bed -b ${A485_DIR}/Sp2_2M.bed >> SP_2M_jaccard.txt
+bedtools jaccard -a ${JQ1_DIR}/Sp9_2M.bed -b ${A485_DIR}/Sp2_2M.bed >> SP_2M_jaccard.txt
 ```
 
-### 19b. KLF
+### KLF
 
 ```console
 bedtools jaccard -a ${H89_DIR}/Klf1_fimo_all.bed -b ${JQ1_DIR}/Klf1_fimo_all.bed > KLF_jaccard.txt
-bedtools jaccard -a ${H89_DIR}/Klf1_fimo_all.bed -b ${A485_DIR}/Klf4_fimo_all_2023-10-11.bed >> KLF_jaccard.txt
-bedtools jaccard -a ${JQ1_DIR}/Klf1_fimo_all.bed -b ${A485_DIR}/Klf4_fimo_all_2023-10-11.bed >> KLF_jaccard.txt
+bedtools jaccard -a ${H89_DIR}/Klf1_fimo_all.bed -b ${A485_DIR}/Klf4_fimo_all.bed >> KLF_jaccard.txt
+bedtools jaccard -a ${JQ1_DIR}/Klf1_fimo_all.bed -b ${A485_DIR}/Klf4_fimo_all.bed >> KLF_jaccard.txt
 
 bedtools jaccard -a ${H89_DIR}/Klf1_2M.bed -b ${JQ1_DIR}/Klf1_2M.bed > KLF_2M_jaccard.txt
-bedtools jaccard -a ${H89_DIR}/Klf1_2M.bed -b ${A485_DIR}/Klf4_2M_2023-10-11.bed >> KLF_2M_jaccard.txt
-bedtools jaccard -a ${JQ1_DIR}/Klf1_2M.bed -b ${A485_DIR}/Klf4_2M_2023-10-11.bed >> KLF_2M_jaccard.txt
+bedtools jaccard -a ${H89_DIR}/Klf1_2M.bed -b ${A485_DIR}/Klf4_2M.bed >> KLF_2M_jaccard.txt
+bedtools jaccard -a ${JQ1_DIR}/Klf1_2M.bed -b ${A485_DIR}/Klf4_2M.bed >> KLF_2M_jaccard.txt
 ```
 
-### 19c. AP-1
+### AP-1
 
 ```console
 bedtools jaccard -a ${H89_DIR}/Fra2_fimo_all.bed -b ${JQ1_DIR}/Bach2_fimo_all.bed > AP1_jaccard.txt
-bedtools jaccard -a ${H89_DIR}/Fra2_fimo_all.bed -b ${A485_DIR}/Fra2_fimo_all_2023-10-11.bed >> AP1_jaccard.txt
-bedtools jaccard -a ${JQ1_DIR}/Bach2_fimo_all.bed -b ${A485_DIR}/Fra2_fimo_all_2023-10-11.bed >> AP1_jaccard.txt
+bedtools jaccard -a ${H89_DIR}/Fra2_fimo_all.bed -b ${A485_DIR}/Fra2_fimo_all.bed >> AP1_jaccard.txt
+bedtools jaccard -a ${JQ1_DIR}/Bach2_fimo_all.bed -b ${A485_DIR}/Fra2_fimo_all.bed >> AP1_jaccard.txt
 
 bedtools jaccard -a ${H89_DIR}/Fra2_2M.bed -b ${JQ1_DIR}/Bach2_2M.bed > AP1_2M_jaccard.txt
-bedtools jaccard -a ${H89_DIR}/Fra2_2M.bed -b ${A485_DIR}/Fra2_2M_2023-10-11.bed >> AP1_2M_jaccard.txt
-bedtools jaccard -a ${JQ1_DIR}/Bach2_2M.bed -b ${A485_DIR}/Fra2_2M_2023-10-11.bed >> AP1_2M_jaccard.txt
+bedtools jaccard -a ${H89_DIR}/Fra2_2M.bed -b ${A485_DIR}/Fra2_2M.bed >> AP1_2M_jaccard.txt
+bedtools jaccard -a ${JQ1_DIR}/Bach2_2M.bed -b ${A485_DIR}/Fra2_2M.bed >> AP1_2M_jaccard.txt
 ```
 
-### 19d. ROR
+### ROR
 
 ```console
 bedtools jaccard -a ${H89_DIR}/Rorb_fimo_all.bed -b ${JQ1_DIR}/Rorb_fimo_all.bed > ROR_jaccard.txt
-
 bedtools jaccard -a ${H89_DIR}/Rorb_2M.bed -b ${JQ1_DIR}/Rorb_2M.bed > ROR_2M_jaccard.txt
 ```
 
-### 19e. TEAD
+### TEAD
 
 ```console
-bedtools jaccard -a ${JQ1_DIR}/TEAD4_fimo_all.bed -b ${A485_DIR}/TEAD4_fimo_all_2023-10-11.bed >> TEAD_jaccard.txt
-
-bedtools jaccard -a ${JQ1_DIR}/TEAD4_2M.bed -b ${A485_DIR}/TEAD4_2M_2023-10-11.bed > TEAD_2M_jaccard.txt
+bedtools jaccard -a ${JQ1_DIR}/TEAD4_fimo_all.bed -b ${A485_DIR}/TEAD4_fimo_all.bed >> TEAD_jaccard.txt
+bedtools jaccard -a ${JQ1_DIR}/TEAD4_2M.bed -b ${A485_DIR}/TEAD4_2M.bed > TEAD_2M_jaccard.txt
 ```
 
-### 19f. RUNX
+### RUNX
 
 ```console
-bedtools jaccard -a ${JQ1_DIR}/RUNX_fimo_all.bed -b ${A485_DIR}/RUNX_fimo_all_2023-10-11.bed >> RUNX_jaccard.txt
-
-bedtools jaccard -a ${JQ1_DIR}/RUNX_2M.bed -b ${A485_DIR}/RUNX_2M_2023-10-11.bed > RUNX_2M_jaccard.txt
+bedtools jaccard -a ${JQ1_DIR}/RUNX_fimo_all.bed -b ${A485_DIR}/RUNX_fimo_all.bed >> RUNX_jaccard.txt
+bedtools jaccard -a ${JQ1_DIR}/RUNX_2M.bed -b ${A485_DIR}/RUNX_2M.bed > RUNX_2M_jaccard.txt
 ```
 
 
-## 14. Add files of interest to visualize on the UCSC Genome Browser
+## 4f. Add files of interest to visualize on the UCSC Genome Browser
 
 ```console
-export PROJECT_WWW="$WWW/genome_browser/trackHub/mm10/"
-export WWW_DIR="$PROCESSED/A485/integration/genome_browser/trackHub/mm10/"
+export PROJECT_WWW="$PROCESSED/integration"
+export WWW_DIR="$PROCESSED/genome_browser/trackHub/mm10/"
 cp ${PROJECT_WWW}/As4.1_DMSO_merged.bw ${WWW_DIR}
 cp ${PROJECT_WWW}/As4.1_H89_merged.bw ${WWW_DIR}
 cp ${PROJECT_WWW}/ctrl.bb ${WWW_DIR}
@@ -285,6 +267,6 @@ cp ${PROJECT_WWW}/As4.1_H89_scRNAseq_RPKM.bigWig ${WWW_DIR}
 cp ${PROJECT_WWW}/As4.1_DMSO_scRNAseq_RPKM.bigWig ${WWW_DIR}
 cp ${PROJECT_WWW}/H3K27Ac_DMSO_true_peaks.bb ${WWW_DIR}
 cp ${PROJECT_WWW}/H3K27Ac_H89_true_peaks.bb ${WWW_DIR}
-cp ${PROJECT_WWW}/H3K27Ac_H89_decATAC_2023-05-22.bb ${WWW_DIR}
-cp ${PROJECT_WWW}/H3K27Ac_H89_incATAC_2023-05-22.bb ${WWW_DIR}
+cp ${PROJECT_WWW}/H3K27Ac_H89_decATAC.bb ${WWW_DIR}
+cp ${PROJECT_WWW}/H3K27Ac_H89_incATAC.bb ${WWW_DIR}
 ```
