@@ -50,8 +50,8 @@ nav:
     - 9. Perform ontologies on subset regions: 'ChIPseq_10.GOonSubset.md'
     - 10. Perform additional ontology comparisons: 'ChIPseq_11.GOv2.md'
     - 11. Prepare data for visualization: 'ChIPseq_12.GenerateBEDfiles.md'
-    - 12. Initial lysine modification analysis: 'LysineModifications_1.md'
-    - 13. Continued lysine modification analysis: 'LysineModifications_2.md'
+    - 12. Initial lysine modification analysis: 'HistoneModifications_1.md'
+    - 13. Continued lysine modification analysis: 'HistoneModifications_2.md'
   - Integrated Analyses:
     - 1. Compare JQ1 results: 'IntegratedAnalysis_1.JQ1.md'
     - 2. Compare A485 results: 'IntegratedAnalysis_2.A485.md'

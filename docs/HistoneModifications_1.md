@@ -1,4 +1,4 @@
-# Lysine Modifications
+# Histone Modifications
 
  - H3K27ac and H2BK5ac (both deposited by CBP/p300)
   - performed immunofluorescence (IF) for H3K27ac and H2BK5ac in A485 treated cells. As4.1 cells treated with A485 for 1 hour had a large decrease in H3K27ac and H2BK5ac intensity by IF- the marks were undetectable compared to DMSO treated controls. 
@@ -26,14 +26,14 @@ igg_ctrl	1	IgG_CKDL210026004-1a_H3H55DSX3_L2_1.fq.gz	IgG_CKDL210026004-1a_H3H55D
 ## 1b. Run pipeline to generate signal
 
 ```console
-nextflow run nf-core/cutandrun --input $DATA/lysine_modifications/sample_table.csv --outdir $PROCESSED/lysine_modifications --genome GRCm38 -profile singularity -c nextflow_rivanna.conf --macs_gsize 2406655830 -bg -resume --max_cpus=4
+nextflow run nf-core/cutandrun --input $DATA/histone_modifications/sample_table.csv --outdir $PROCESSED/histone_modifications --genome GRCm38 -profile singularity -c nextflow_rivanna.conf --macs_gsize 2406655830 -bg -resume --max_cpus=4
 --dt_calc_all_matrix FALSE
 ```
 
 ## 1c. Convert consensus peaks to bigBed for UCSC genome browser
 
 ```console
-cd $PROCESSED/lysine_modifications/consensus_peaks/
+cd $PROCESSED/histone_modifications/consensus_peaks/
 
 awk -F'\t' '{print "chr"$1, $2, $3}' H3K4me1.consensus.peak_counts.bed | sort -k1,1 -k2,2n > H3K4me1_consensus_peaks.bed3
 awk -F'\t' '{print "chr"$1, $2, $3}' H3K4me3.consensus.peak_counts.bed | sort -k1,1 -k2,2n  > H3K4me3_consensus_peaks.bed3
@@ -57,12 +57,12 @@ cp *.bb $WWW/genome_browser/trackHub/mm10/
 ## 1d. Add signal tracks
 
 ```console
-cd $PROCESSED/lysine_modifications/
+cd $PROCESSED/histone_modifications/
 
-cp $PROCESSED//lysine_modifications/03_peak_calling/03_bed_to_bigwig/*.bigWig $WWW/genome_browser/trackHub/mm10/
+cp $PROCESSED//histone_modifications/03_peak_calling/03_bed_to_bigwig/*.bigWig $WWW/genome_browser/trackHub/mm10/
 
 mkdir bigwig_files/
-cp $PROCESSED/lysine_modifications/03_peak_calling/03_bed_to_bigwig/*.bigWig $PROCESSED/lysine_modifications/bigwig_files
+cp $PROCESSED/histone_modifications/03_peak_calling/03_bed_to_bigwig/*.bigWig $PROCESSED/histone_modifications/bigwig_files
 
 bigWigMerge H2B5Kac_R1.bigWig H2B5Kac_R2.bigWig H2B5Kac.bedGraph
 awk -F'\t' '{print "chr"$1, $2, $3, $4}' H2B5Kac.bedGraph > tmp && mv tmp H2B5Kac.bedGraph
@@ -101,6 +101,6 @@ sed -i 's/chrMT/chrM/g' H4K5ac.bedGraph
 LC_COLLATE=C sort -k1,1 -k2,2n H4K5ac.bedGraph > tmp && mv tmp H4K5ac.bedGraph
 bedGraphToBigWig H4K5ac.bedGraph mm10.chrom.sizes H4K5ac.bigWig
 
-cp $PROCESSED/lysine_modifications/bigwig_files/*.bigWig $WWW/genome_browser/trackHub/mm10/
+cp $PROCESSED/histone_modifications/bigwig_files/*.bigWig $WWW/genome_browser/trackHub/mm10/
 ```
 

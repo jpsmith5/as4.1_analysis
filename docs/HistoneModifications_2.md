@@ -1,103 +1,103 @@
 ## 2 Compare signal tracks
 
-### 2a. H3K27Ac ChIP-seq
+### 2a. H3K27ac ChIP-seq
 
 ```console
-multiBigwigSummary bins -b ${WWW_DIR}/As4.1_H3K27Ac_H89_REP1.bigWig ${WWW_DIR}/As4.1_H3K27Ac_H89_REP2.bigWig --labels H3K27Ac_H89_1 H3K27Ac_H89_2 -out H3K27Ac_H89_scores_per_bin.npz --outRawCounts H3K27Ac_H89_scores_per_bin.tab
+multiBigwigSummary bins -b ${WWW_DIR}/As4.1_H3K27ac_H89_REP1.bigWig ${WWW_DIR}/As4.1_H3K27ac_H89_REP2.bigWig --labels H3K27ac_H89_1 H3K27ac_H89_2 -out H3K27ac_H89_scores_per_bin.npz --outRawCounts H3K27ac_H89_scores_per_bin.tab
 plotCorrelation \
--in H3K27Ac_H89_scores_per_bin.npz \
+-in H3K27ac_H89_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o H3K27Ac_H89_PearsonCorr_bigwigScores.svg   \
---outFileCorMatrix H3K27Ac_H89_PearsonCorr_bigwigScores.tab
+-o H3K27ac_H89_PearsonCorr_bigwigScores.svg   \
+--outFileCorMatrix H3K27ac_H89_PearsonCorr_bigwigScores.tab
 
-bigwigCompare --operation mean --bigwig1 ${WWW_DIR}/As4.1_H3K27Ac_H89_REP1.bigWig --bigwig2 ${WWW_DIR}/As4.1_H3K27Ac_H89_REP2.bigWig --numberOfProcessors 40 --outFileName ${WWW_DIR}/As4.1_H3K27Ac_H89.bigWig --outFileFormat bigwig
+bigwigCompare --operation mean --bigwig1 ${WWW_DIR}/As4.1_H3K27ac_H89_REP1.bigWig --bigwig2 ${WWW_DIR}/As4.1_H3K27ac_H89_REP2.bigWig --numberOfProcessors 40 --outFileName ${WWW_DIR}/As4.1_H3K27ac_H89.bigWig --outFileFormat bigwig
 
-multiBigwigSummary bins -b ${WWW_DIR}/As4.1_H3K27Ac_DMSO_REP1.bigWig ${WWW_DIR}/As4.1_H3K27Ac_DMSO_REP2.bigWig --labels H3K27Ac_DMSO_1 H3K27Ac_DMSO_2 -out H3K27Ac_DMSO_scores_per_bin.npz --outRawCounts H3K27Ac_DMSO_scores_per_bin.tab
+multiBigwigSummary bins -b ${WWW_DIR}/As4.1_H3K27ac_DMSO_REP1.bigWig ${WWW_DIR}/As4.1_H3K27ac_DMSO_REP2.bigWig --labels H3K27ac_DMSO_1 H3K27ac_DMSO_2 -out H3K27ac_DMSO_scores_per_bin.npz --outRawCounts H3K27ac_DMSO_scores_per_bin.tab
 plotCorrelation \
--in H3K27Ac_DMSO_scores_per_bin.npz \
+-in H3K27ac_DMSO_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o H3K27Ac_DMSO_PearsonCorr_bigwigScores.png   \
---outFileCorMatrix H3K27Ac_DMSO_PearsonCorr_bigwigScores.tab
+-o H3K27ac_DMSO_PearsonCorr_bigwigScores.png   \
+--outFileCorMatrix H3K27ac_DMSO_PearsonCorr_bigwigScores.tab
 
-bigwigCompare --operation mean --bigwig1 ${WWW_DIR}/As4.1_H3K27Ac_DMSO_REP1.bigWig --bigwig2 ${WWW_DIR}/As4.1_H3K27Ac_DMSO_REP2.bigWig --numberOfProcessors 40 --outFileName ${WWW_DIR}/As4.1_H3K27Ac_DMSO.bigWig --outFileFormat bigwig
+bigwigCompare --operation mean --bigwig1 ${WWW_DIR}/As4.1_H3K27ac_DMSO_REP1.bigWig --bigwig2 ${WWW_DIR}/As4.1_H3K27ac_DMSO_REP2.bigWig --numberOfProcessors 40 --outFileName ${WWW_DIR}/As4.1_H3K27ac_DMSO.bigWig --outFileFormat bigwig
 ```
 
-### 2b. Generate comparative heatmaps of the lysine modifications in untreated cells
+### 2b. Generate comparative heatmaps of the histone modifications in untreated cells
 
- - H3K27Ac
+ - H3K27ac
  - H3K4me1
  - H3K4me3
  - H4K16ac
  - H4K5ac
- - H2B5Kac
+ - H2BK5ac
 
-#### H3K27Ac Cut n Tag
+#### H3K27ac Cut n Tag
 
 Now, check across all variants of this mark, both the Cut and Tag and the ChIP-seq, then combine
 ```console
-# Cut and Tag H3K27Ac
+# Cut and Tag H3K27ac
 multiBigwigSummary bins -b ${WWW_DIR}/H3K27ac_R1.bigWig \
  ${WWW_DIR}/H3K27ac_R2.bigWig \
- --labels H3K27Ac_CutNTag_1 H3K27Ac_CutNTag_2 \
- -out H3K27Ac_CutNTag_scores_per_bin.npz \
- --outRawCounts H3K27Ac_CutNTag_scores_per_bin.tab
+ --labels H3K27ac_CutNTag_1 H3K27ac_CutNTag_2 \
+ -out H3K27ac_CutNTag_scores_per_bin.npz \
+ --outRawCounts H3K27ac_CutNTag_scores_per_bin.tab
 
 plotCorrelation \
--in H3K27Ac_CutNTag_scores_per_bin.npz \
+-in H3K27ac_CutNTag_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o H3K27Ac_CutNTag_scatter_PearsonCorr_bigwigScores.svg   \
---outFileCorMatrix H3K27Ac_CutNTag_scatter_PearsonCorr_bigwigScores.tab
+-o H3K27ac_CutNTag_scatter_PearsonCorr_bigwigScores.svg   \
+--outFileCorMatrix H3K27ac_CutNTag_scatter_PearsonCorr_bigwigScores.tab
 
 bigwigCompare --operation mean --bigwig1 ${WWW_DIR}/H3K27ac_R1.bigWig --bigwig2 ${WWW_DIR}/H3K27ac_R2.bigWig --numberOfProcessors 40 --outFileName ${WWW_DIR}/H3K27ac_CutNTag.bigWig --outFileFormat bigwig
 
 # All together
-multiBigwigSummary bins -b ${WWW_DIR}/As4.1_H3K27Ac_DMSO_REP1.bigWig \
- ${WWW_DIR}/As4.1_H3K27Ac_DMSO_REP2.bigWig \
+multiBigwigSummary bins -b ${WWW_DIR}/As4.1_H3K27ac_DMSO_REP1.bigWig \
+ ${WWW_DIR}/As4.1_H3K27ac_DMSO_REP2.bigWig \
  ${WWW_DIR}/H3K27ac_R1.bigWig \
  ${WWW_DIR}/H3K27ac_R2.bigWig \
- --labels H3K27Ac_DMSO_1 H3K27Ac_DMSO_2 H3K27Ac_CutNTag_1 H3K27Ac_CutNTag_2 \
- -out H3K27Ac_As4.1_scores_per_bin.npz \
- --outRawCounts H3K27Ac_As4.1_scores_per_bin.tab
+ --labels H3K27ac_DMSO_1 H3K27ac_DMSO_2 H3K27ac_CutNTag_1 H3K27ac_CutNTag_2 \
+ -out H3K27ac_As4.1_scores_per_bin.npz \
+ --outRawCounts H3K27ac_As4.1_scores_per_bin.tab
 
 plotCorrelation \
--in H3K27Ac_As4.1_scores_per_bin.npz \
+-in H3K27ac_As4.1_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o H3K27Ac_As4.1_scatter_PearsonCorr_bigwigScores.svg   \
---outFileCorMatrix H3K27Ac_As4.1_scatter_PearsonCorr_bigwigScores.tab
+-o H3K27ac_As4.1_scatter_PearsonCorr_bigwigScores.svg   \
+--outFileCorMatrix H3K27ac_As4.1_scatter_PearsonCorr_bigwigScores.tab
 
 plotCorrelation \
--in H3K27Ac_As4.1_scores_per_bin.npz \
+-in H3K27ac_As4.1_scores_per_bin.npz \
 --corMethod spearman --skipZeros \
 --plotTitle "Spearman Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o H3K27Ac_As4.1_scatter_SpearmanCorr_bigwigScores.svg   \
---outFileCorMatrix H3K27Ac_As4.1_scatter_SpearmanCorr_bigwigScores.tab
+-o H3K27ac_As4.1_scatter_SpearmanCorr_bigwigScores.svg   \
+--outFileCorMatrix H3K27ac_As4.1_scatter_SpearmanCorr_bigwigScores.tab
 
 plotCorrelation \
--in H3K27Ac_As4.1_scores_per_bin.npz \
+-in H3K27ac_As4.1_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
--o H3K27Ac_As4.1_heatmap_PearsonCorr_bigwigScores.svg \
---outFileCorMatrix H3K27Ac_As4.1_heatmap_PearsonCorr_bigwigScores.tab
+-o H3K27ac_As4.1_heatmap_PearsonCorr_bigwigScores.svg \
+--outFileCorMatrix H3K27ac_As4.1_heatmap_PearsonCorr_bigwigScores.tab
 
 plotCorrelation \
--in H3K27Ac_As4.1_scores_per_bin.npz \
+-in H3K27ac_As4.1_scores_per_bin.npz \
 --corMethod spearman --skipZeros \
 --plotTitle "Spearman Correlation of Average Scores Per Bin" \
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
--o H3K27Ac_As4.1_heatmap_SpearmanCorr_bigwigScores.svg \
---outFileCorMatrix H3K27Ac_As4.1_heatmap_SpearmanCorr_bigwigScores.tab
+-o H3K27ac_As4.1_heatmap_SpearmanCorr_bigwigScores.svg \
+--outFileCorMatrix H3K27ac_As4.1_heatmap_SpearmanCorr_bigwigScores.tab
 
-bigwigCompare --operation mean --bigwig1 ${WWW_DIR}/H3K27ac_CutNTag.bigWig --bigwig2 ${WWW_DIR}/As4.1_H3K27Ac_DMSO.bigWig --numberOfProcessors 40 --outFileName ${WWW_DIR}/H3K27Ac_As4.1.bigWig --outFileFormat bigwig
+bigwigCompare --operation mean --bigwig1 ${WWW_DIR}/H3K27ac_CutNTag.bigWig --bigwig2 ${WWW_DIR}/As4.1_H3K27ac_DMSO.bigWig --numberOfProcessors 40 --outFileName ${WWW_DIR}/H3K27ac_As4.1.bigWig --outFileFormat bigwig
 ```
 
 #### H3K4me1
@@ -200,15 +200,15 @@ plotCorrelation \
 bigwigCompare --operation mean --bigwig1 ${WWW_DIR}/H2B5Kac_R1.bigWig --bigwig2 ${WWW_DIR}/H2B5Kac_R2.bigWig --numberOfProcessors 40 --outFileName ${WWW_DIR}/H2B5Kac.bigWig --outFileFormat bigwig
 ```
 
-### 2c. Compare all lysine modifications together
+### 2c. Compare all histone modifications together
 
 #### With all replicates
 
 ```console
 export WWW_DIR="$PROCESSED/A485/integration/genome_browser/trackHub/mm10/"
 
-multiBigwigSummary bins -b ${WWW_DIR}/As4.1_H3K27Ac_DMSO_REP1.bigWig \
- ${WWW_DIR}/As4.1_H3K27Ac_DMSO_REP2.bigWig \
+multiBigwigSummary bins -b ${WWW_DIR}/As4.1_H3K27ac_DMSO_REP1.bigWig \
+ ${WWW_DIR}/As4.1_H3K27ac_DMSO_REP2.bigWig \
  ${WWW_DIR}/H3K27ac_R1.bigWig \
  ${WWW_DIR}/H3K27ac_R2.bigWig \
  ${WWW_DIR}/H3K4me1_R1.bigWig \
@@ -222,52 +222,52 @@ multiBigwigSummary bins -b ${WWW_DIR}/As4.1_H3K27Ac_DMSO_REP1.bigWig \
  ${WWW_DIR}/H2B5Kac_R1.bigWig \
  ${WWW_DIR}/H2B5Kac_R2.bigWig \
  ${WWW_DIR}/As4.1_ChIP_pooled.bigWig \
- --labels H3K27Ac_DMSO_1 H3K27Ac_DMSO_2 \
- H3K27Ac_CutNTag_1 H3K27Ac_CutNTag_2 \
+ --labels H3K27ac_DMSO_1 H3K27ac_DMSO_2 \
+ H3K27ac_CutNTag_1 H3K27ac_CutNTag_2 \
  H3K4me1_CutNTag_1 H3K4me1_CutNTag_2 \
  H3K4me3_CutNTag_1 H3K4me3_CutNTag_2 \
  H4K16ac_CutNTag_1 H4K16ac_CutNTag_2 \
  H4K5ac_CutNTag_1 H4K5ac_CutNTag_2 \
  H2B5Kac_CutNTag_1 H2B5Kac_CutNTag_2 \
  input \
- -out LysineModifications_scores_per_bin.npz \
- --outRawCounts LysineModifications_scores_per_bin.tab
+ -out HistoneModifications_scores_per_bin.npz \
+ --outRawCounts HistoneModifications_scores_per_bin.tab
 
 # Spearman
 plotCorrelation \
--in LysineModifications_scores_per_bin.npz \
+-in HistoneModifications_scores_per_bin.npz \
 --corMethod spearman --skipZeros \
 --plotTitle "Spearman Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o LysineModifications_scatter_SpearmanCorr_bigwigScores.svg   \
---outFileCorMatrix LysineModifications_scatter_SpearmanCorr_bigwigScores.tab
+-o HistoneModifications_scatter_SpearmanCorr_bigwigScores.svg   \
+--outFileCorMatrix HistoneModifications_scatter_SpearmanCorr_bigwigScores.tab
 
 plotCorrelation \
--in LysineModifications_scores_per_bin.npz \
+-in HistoneModifications_scores_per_bin.npz \
 --corMethod spearman --skipZeros \
 --plotTitle "Spearman Correlation of Average Scores Per Bin" \
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
--o LysineModifications_heatmap_SpearmanCorr_bigwigScores.svg \
---outFileCorMatrix LysineModifications_heatmap_SpearmanCorr_bigwigScores.tab
+-o HistoneModifications_heatmap_SpearmanCorr_bigwigScores.svg \
+--outFileCorMatrix HistoneModifications_heatmap_SpearmanCorr_bigwigScores.tab
 
 # Pearson 
 plotCorrelation \
--in LysineModifications_scores_per_bin.npz \
+-in HistoneModifications_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --removeOutliers \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o LysineModifications_scatter_PearsonCorr_bigwigScores.svg   \
---outFileCorMatrix LysineModifications_scatter_PearsonCorr_bigwigScores.tab
+-o HistoneModifications_scatter_PearsonCorr_bigwigScores.svg   \
+--outFileCorMatrix HistoneModifications_scatter_PearsonCorr_bigwigScores.tab
 
 plotCorrelation \
--in LysineModifications_scores_per_bin.npz \
+-in HistoneModifications_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --removeOutliers \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
--o LysineModifications_heatmap_PearsonCorr_bigwigScores.svg \
---outFileCorMatrix LysineModifications_heatmap_PearsonCorr_bigwigScores.tab
+-o HistoneModifications_heatmap_PearsonCorr_bigwigScores.svg \
+--outFileCorMatrix HistoneModifications_heatmap_PearsonCorr_bigwigScores.tab
 ```
 
 #### Compare after merging replicates
@@ -275,109 +275,109 @@ plotCorrelation \
 ```console
 export WWW_DIR="$PROCESSED/A485/integration/genome_browser/trackHub/mm10/"
 
-multiBigwigSummary bins -b ${WWW_DIR}/H3K27Ac_As4.1.bigWig \
+multiBigwigSummary bins -b ${WWW_DIR}/H3K27ac_As4.1.bigWig \
  ${WWW_DIR}/H3K4me1.bigWig \
  ${WWW_DIR}/H3K4me3.bigWig \
  ${WWW_DIR}/H4K16ac.bigWig \
  ${WWW_DIR}/H4K5ac.bigWig \
  ${WWW_DIR}/H2B5Kac.bigWig \
  ${WWW_DIR}/As4.1_ChIP_pooled.bigWig \
- --labels H3K27Ac H3K4me1 H3K4me3 \
+ --labels H3K27ac H3K4me1 H3K4me3 \
  H4K16ac H4K5ac H2B5Kac input \
- -out LysineModifications_merged_scores_per_bin.npz \
- --outRawCounts LysineModifications_merged_scores_per_bin.tab
+ -out HistoneModifications_merged_scores_per_bin.npz \
+ --outRawCounts HistoneModifications_merged_scores_per_bin.tab
 
 # Spearman
 plotCorrelation \
--in LysineModifications_merged_scores_per_bin.npz \
+-in HistoneModifications_merged_scores_per_bin.npz \
 --corMethod spearman --skipZeros \
 --plotTitle "Spearman Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o LysineModifications_merged_scatter_SpearmanCorr_bigwigScores.svg   \
---outFileCorMatrix LysineModifications_merged_scatter_SpearmanCorr_bigwigScores.tab
+-o HistoneModifications_merged_scatter_SpearmanCorr_bigwigScores.svg   \
+--outFileCorMatrix HistoneModifications_merged_scatter_SpearmanCorr_bigwigScores.tab
 
 plotCorrelation \
--in LysineModifications_merged_scores_per_bin.npz \
+-in HistoneModifications_merged_scores_per_bin.npz \
 --corMethod spearman --skipZeros \
 --plotTitle "Spearman Correlation of Average Scores Per Bin" \
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
--o LysineModifications_merged_heatmap_SpearmanCorr_bigwigScores.svg \
---outFileCorMatrix LysineModifications_merged_heatmap_SpearmanCorr_bigwigScores.tab
+-o HistoneModifications_merged_heatmap_SpearmanCorr_bigwigScores.svg \
+--outFileCorMatrix HistoneModifications_merged_heatmap_SpearmanCorr_bigwigScores.tab
 
 # Pearson 
 plotCorrelation \
--in LysineModifications_merged_scores_per_bin.npz \
+-in HistoneModifications_merged_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --removeOutliers \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o LysineModifications_merged_scatter_PearsonCorr_bigwigScores.svg   \
---outFileCorMatrix LysineModifications_merged_scatter_PearsonCorr_bigwigScores.tab
+-o HistoneModifications_merged_scatter_PearsonCorr_bigwigScores.svg   \
+--outFileCorMatrix HistoneModifications_merged_scatter_PearsonCorr_bigwigScores.tab
 
 plotCorrelation \
--in LysineModifications_merged_scores_per_bin.npz \
+-in HistoneModifications_merged_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --removeOutliers \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
--o LysineModifications_merged_heatmap_PearsonCorr_bigwigScores.svg \
---outFileCorMatrix LysineModifications_merged_heatmap_PearsonCorr_bigwigScores.tab
+-o HistoneModifications_merged_heatmap_PearsonCorr_bigwigScores.svg \
+--outFileCorMatrix HistoneModifications_merged_heatmap_PearsonCorr_bigwigScores.tab
 
 # No input
-multiBigwigSummary bins -b ${WWW_DIR}/H3K27Ac_As4.1.bigWig \
+multiBigwigSummary bins -b ${WWW_DIR}/H3K27ac_As4.1.bigWig \
  ${WWW_DIR}/H3K4me1.bigWig \
  ${WWW_DIR}/H3K4me3.bigWig \
  ${WWW_DIR}/H4K16ac.bigWig \
  ${WWW_DIR}/H4K5ac.bigWig \
  ${WWW_DIR}/H2B5Kac.bigWig \
- --labels H3K27Ac H3K4me1 H3K4me3 \
+ --labels H3K27ac H3K4me1 H3K4me3 \
  H4K16ac H4K5ac H2B5Kac \
- -out LysineModifications_merged-no-input_scores_per_bin.npz \
- --outRawCounts LysineModifications_merged-no-input_scores_per_bin.tab
+ -out HistoneModifications_merged-no-input_scores_per_bin.npz \
+ --outRawCounts HistoneModifications_merged-no-input_scores_per_bin.tab
  
 # Spearman
 plotCorrelation \
--in LysineModifications_merged-no-input_scores_per_bin.npz \
+-in HistoneModifications_merged-no-input_scores_per_bin.npz \
 --corMethod spearman --skipZeros \
 --plotTitle "Spearman Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o LysineModifications_merged-no-input_scatter_SpearmanCorr_bigwigScores.svg   \
---outFileCorMatrix LysineModifications_merged-no-input_scatter_SpearmanCorr_bigwigScores.tab
+-o HistoneModifications_merged-no-input_scatter_SpearmanCorr_bigwigScores.svg   \
+--outFileCorMatrix HistoneModifications_merged-no-input_scatter_SpearmanCorr_bigwigScores.tab
 
 plotCorrelation \
--in LysineModifications_merged-no-input_scores_per_bin.npz \
+-in HistoneModifications_merged-no-input_scores_per_bin.npz \
 --corMethod spearman --skipZeros \
 --plotTitle "Spearman Correlation of Average Scores Per Bin" \
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
--o LysineModifications_merged-no-input_heatmap_SpearmanCorr_bigwigScores.svg \
---outFileCorMatrix LysineModifications_merged-no-input_heatmap_SpearmanCorr_bigwigScores.tab
+-o HistoneModifications_merged-no-input_heatmap_SpearmanCorr_bigwigScores.svg \
+--outFileCorMatrix HistoneModifications_merged-no-input_heatmap_SpearmanCorr_bigwigScores.tab
 
 # Pearson 
 plotCorrelation \
--in LysineModifications_merged-no-input_scores_per_bin.npz \
+-in HistoneModifications_merged-no-input_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --removeOutliers \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot scatterplot \
--o LysineModifications_merged-no-input_scatter_PearsonCorr_bigwigScores.svg   \
---outFileCorMatrix LysineModifications_merged-no-input_scatter_PearsonCorr_bigwigScores.tab
+-o HistoneModifications_merged-no-input_scatter_PearsonCorr_bigwigScores.svg   \
+--outFileCorMatrix HistoneModifications_merged-no-input_scatter_PearsonCorr_bigwigScores.tab
 
 plotCorrelation \
--in LysineModifications_merged-no-input_scores_per_bin.npz \
+-in HistoneModifications_merged-no-input_scores_per_bin.npz \
 --corMethod pearson --skipZeros \
 --removeOutliers \
 --plotTitle "Pearson Correlation of Average Scores Per Bin" \
 --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
--o LysineModifications_merged-no-input_heatmap_PearsonCorr_bigwigScores.svg \
---outFileCorMatrix LysineModifications_merged-no-input_heatmap_PearsonCorr_bigwigScores.tab
+-o HistoneModifications_merged-no-input_heatmap_PearsonCorr_bigwigScores.svg \
+--outFileCorMatrix HistoneModifications_merged-no-input_heatmap_PearsonCorr_bigwigScores.tab
 ```
 
-### 2d. Visualize lysine modifications after scaling
+### 2d. Visualize histone modifications after scaling
 
  - mm10 effective genome size: 2,730,871,774
 
 ```console
-cd $PROCESSED/lysine_modifications/02_alignment/bowtie2/target/markdup/
+cd $PROCESSED/histone_modifications/02_alignment/bowtie2/target/markdup/
 
 samtools merge -@ 40 -s 99 --write-index H4K16ac.bam H4K16ac_R1.target.markdup.sorted.bam H4K16ac_R2.target.markdup.sorted.bam
 
