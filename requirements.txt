@@ -1,0 +1,4 @@
+markmeld
+mkdocs >= 1.2.2
+https://github.com/databio/mkdocs-databio/archive/master.zip
+
