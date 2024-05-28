@@ -1,6 +1,6 @@
 theme: databio
 
-site_name: Renin Regulatory Pathway Inhibition Epigenetically Silences *Ren1*
+site_name: Epigenetic Switch Regulates Renin Expression
 site_author: Jason Smith
 site_url: https://as4.1-analysis.readthedocs.io/en/latest/
 repo_url: https://github.com/jpsmith5/as4.1_analysis
@@ -28,7 +28,7 @@ nav:
     - 14. A-485 Analysis - Define motif families: 'ATACseq-A485_3.DefineMotifFamilies.md'
     - 15. A-485 Analysis - Define and annotate final ATAC data: 'ATACseq-A485_4.DefineAnnotateFinalATACdataframe.md'
     - 16. A-485 Analysis - Plot motif profiles: 'ATACseq-A485_5.PlotMotifProfiles.md'
-    - 17. Mouse Tissue *Ren1* Locus Visualization: 'Ren1_Locus_Tissues.md'
+    - 17. Mouse Tissue Ren1 Locus Visualization: 'Ren1_Locus_Tissues.md'
   - RNA Data Analysis:
     - 1. Initialize analysis: 'scRNAseq_1.initiation.md'
     - 2. Quality control: 'scRNAseq_2.QC.md'
